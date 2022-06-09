@@ -1,0 +1,9 @@
+name: BeeChat
+version: '${project.version}'
+main: fun.mcbee.beechat.BeeChat
+api-version: 1.19
+authors: [ PxLib ]
+website: https://discord.gg/mcbee
+softdepend: [PlaceholderAPI]
+commands:
+  breload:
