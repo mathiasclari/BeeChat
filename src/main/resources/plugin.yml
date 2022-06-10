@@ -7,3 +7,5 @@ website: https://discord.gg/mcbee
 softdepend: [PlaceholderAPI]
 commands:
   breload:
+  cchat:
+    aliases: [clearchat]

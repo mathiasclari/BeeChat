@@ -1,7 +1,9 @@
 package fun.mcbee.beechat;
 
+import fun.mcbee.beechat.comands.ClearChat;
 import fun.mcbee.beechat.comands.ReloadCommand;
 import fun.mcbee.beechat.listeners.ChatSystem;
+import fun.mcbee.beechat.listeners.JoinLeaveMessages;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -28,7 +30,9 @@ public final class BeeChat extends JavaPlugin {
         if(!co.exists()) saveResource("config.yml", false);
 
         Bukkit.getPluginManager().registerEvents(new ChatSystem(), this);
+        Bukkit.getPluginManager().registerEvents(new JoinLeaveMessages(), this);
         getCommand("breload").setExecutor(new ReloadCommand());
+        getCommand("cchat").setExecutor(new ClearChat());
 
 
         try{

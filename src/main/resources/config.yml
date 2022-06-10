@@ -1,2 +1,4 @@
 #Chat Format || Support Placeholders PLACEHOLDERAPI
 format: "{display_name} &#6A6177» &#F2F2F2{message}"
+joinmsg: "&#6A6177» &#F2F2F2{display_name} &#F2F2F2has joined the server."
+quitmsg: "&#6A6177» &#F2F2F2{display_name} &#F2F2F2has left the server."
