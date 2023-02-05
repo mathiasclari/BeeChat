@@ -2,10 +2,15 @@ name: BeeChat
 version: '${project.version}'
 main: fun.mcbee.beechat.BeeChat
 api-version: 1.19
-authors: [ PxLib ]
-website: https://discord.gg/mcbee
+authors: [ MathiasClari ]
+website: https://possiest.com
+description: BeeChat is a chat plugin for Minecraft servers.Made by MathiasClari - https://possiest.com
 softdepend: [PlaceholderAPI]
 commands:
-  breload:
-  cchat:
-    aliases: [clearchat]
+  bc:
+    description: BeeChat command
+    usage: /bc <message>
+    aliases: [beechat]
+    permission: beechat.use
+    permission-message: You do not have permission to use BeeChat!
+    tab-complete: 0

@@ -1,7 +1,6 @@
 package fun.mcbee.beechat;
 
-import fun.mcbee.beechat.comands.ClearChat;
-import fun.mcbee.beechat.comands.ReloadCommand;
+import fun.mcbee.beechat.comands.BeeChatCommand;
 import fun.mcbee.beechat.listeners.ChatSystem;
 import fun.mcbee.beechat.listeners.JoinLeaveMessages;
 import net.md_5.bungee.api.ChatColor;
@@ -20,19 +19,24 @@ public final class BeeChat extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "[]=================[" + ChatColor.of("#E8A025") + ChatColor.BOLD + "BeeChat" + ChatColor.GRAY + "]=================[]");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|" + ChatColor.of("#406266") + "       Made by:" + ChatColor.of("#E8A025") + " PxLib");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|" + ChatColor.of("#406266") + "       My GitHub:" + ChatColor.of("#E8A025") + "https://github.com/PxLib");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "[]===========================================[]");
+        startup();
+    }
 
+    @Override
+    public void onDisable() {
+        
+    }
 
+    private void registerCommands() {
+        getCommand("bc").setExecutor(new BeeChatCommand());
+    }
+
+    private void configuration(){
         File co = new File(getDataFolder(), "config.yml");
         if(!co.exists()) saveResource("config.yml", false);
 
         Bukkit.getPluginManager().registerEvents(new ChatSystem(), this);
         Bukkit.getPluginManager().registerEvents(new JoinLeaveMessages(), this);
-        getCommand("breload").setExecutor(new ReloadCommand());
-        getCommand("cchat").setExecutor(new ClearChat());
 
 
         try{
@@ -40,12 +44,19 @@ public final class BeeChat extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-
     }
 
-    @Override
-    public void onDisable() {
-        
+    private void startup(){
+        registerCommands();
+        configuration();
+        startMessage();
+    }
+
+    private void startMessage(){
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "[]=================[" + ChatColor.of("#E8A025") + ChatColor.BOLD + "BeeChat" + ChatColor.GRAY + "]=================[]");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|" + ChatColor.of("#406266") + "       Made by:" + ChatColor.of("#E8A025") + " MathiasClari");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|" + ChatColor.of("#406266") + "       My GitHub:" + ChatColor.of("#E8A025") + "https://github.com/MathiasClari");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "[]===========================================[]");
     }
 
     public static BeeChat getInstance() {
